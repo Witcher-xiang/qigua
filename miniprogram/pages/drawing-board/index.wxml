@@ -1,0 +1,17 @@
+<view class="canvas-wrapper">
+  <canvas
+    id="myCanvas"
+    canvas-id="myCanvas"
+    class="canvas"
+    type="2d"
+    style="width: 500px; height: 300px;"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+    bindtouchcancel="onTouchEnd"
+  ></canvas>
+  <view class="toolbar">
+    <button class="btn" type="primary" bindtap="undo">撤销</button>
+    <button class="btn" type="warn" bindtap="clear">清空</button>
+  </view>
+</view>

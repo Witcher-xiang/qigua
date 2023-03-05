@@ -1,0 +1,45 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.auth-wrap{
+  width: 95%;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.agree {
+
+  background: #647DD1;
+  color: white;
+  border-radius: 24px;
+  width: 141.5px;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+}
+
+.refuse{
+  width: 141.5px;
+height: 44px;
+border-radius: 24px;
+box-sizing: border-box;
+border: 1px solid #647DD1;
+color:#647DD1;
+text-align: center;
+line-height: 44px;
+}

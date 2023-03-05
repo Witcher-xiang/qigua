@@ -1,0 +1,31 @@
+.canvas-wrapper {
+  position: relative;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  border-radius: 4rpx;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  background-color: #3ca0ff;
+}
