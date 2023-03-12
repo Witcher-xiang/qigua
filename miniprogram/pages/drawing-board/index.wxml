@@ -1,17 +1,30 @@
 <view class="canvas-wrapper">
-  <canvas
-    id="myCanvas"
-    canvas-id="myCanvas"
-    class="canvas"
-    type="2d"
-    style="width: 500px; height: 300px;"
-    bindtouchstart="onTouchStart"
-    bindtouchmove="onTouchMove"
-    bindtouchend="onTouchEnd"
-    bindtouchcancel="onTouchEnd"
-  ></canvas>
-  <view class="toolbar">
-    <button class="btn" type="primary" bindtap="undo">撤销</button>
-    <button class="btn" type="warn" bindtap="clear">清空</button>
+  <view class="canvas-container">
+    <view class="canvas-box">
+      <canvas id="myCanvas" canvas-id="myCanvas"  type="2d" disable-scroll  
+      style="width:320px;height:450px;" 
+      bindtouchstart="drawTouStart" bindtouchmove="drawTouMove" bindtouchend="drawTouEnd"></canvas>
+    </view>
+ 
   </view>
+
+  <view class="console">
+  <image class="console-icon" src="../../img/draw_icon/draw_eraser_normal@3x.png"
+  bindtap="handleRubber"
+  />
+  <image class="console-icon" src="../../img/draw_icon/draw_pen.png"
+    bindtap="handleRemove"
+  />
+  <image class="console-icon" src="../../img/draw_icon/draw_back_left.png"  bindtap="handleBack"/>
+  <image class="console-icon" src="../../img/draw_icon/draw_back_right.png" 
+  bindtap="handleGo"
+  />
+  <image class="console-icon" src="../../img/draw_icon/draw_back_clean.png"/>
+  </view>
+
+  <view class="btn">
+    提交
+  </view>
+
+
 </view>

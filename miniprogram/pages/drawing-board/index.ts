@@ -1,18 +1,29 @@
 Page({
+  canvas: null as any, //画布实例
+  ctx: null as any, //画笔实例
+  sX: 0, //初始X值
+  sY: 0, //初始Y值
+  eX: 0, //结束时X值
+  eY: 0, //结束时Y值
+  pic: [], //保存用户的操作
   data: {
     context: null as any,
     canvasWidth: 0,
     canvasHeight: 0,
+    width: 0, // canvas的width
+    height: 0, // canvas的height
+    widthP: 0.5, //设备宽对比375 比例
+    imgInfo: {}, //图片信息
     isPainting: false,
-    lastX: 0,
-    lastY: 0,
-    undoList: [] as any
+    picIndex: -1, //当前的pic操作下标
+    picLength: 0, //当前记录画布数组的长度
   },
 
-  onReady() {
-
-
+      
+  /* 获取canvas节点 */
+  getCanvsDom() {
     wx.createSelectorQuery()
+      .in(this)
       .select("#myCanvas")
       .fields({ node: true, size: true })
       .exec((res) => {
@@ -21,83 +32,128 @@ Page({
         const width = res[0].width;
         const height = res[0].height;
 
-        console.log("context",context)
-        this.setData({
-          context,
-          canvasWidth: width,
-          canvasHeight: height
-        });
+  
+         canvas.width = "320";
+         canvas.height = "470";
+        this.canvas = canvas;
+        this.ctx = context;
+        console.log("context", context)
+        this.copyCanvas();
+        // this.setData({
+        //   context,
+        //   canvasWidth: width,
+        //   canvasHeight: height
+        // });
       });
   },
+  
+        /* 复制画布  */
+        copyCanvas() {
+          let arr = (this.pic || []) as any;
+          /* 用户撤销后对画布进行了操作，要移除数组 */
+          if (this.data.picIndex < arr.length - 1) {
+              arr.splice(this.data.picIndex + 1);
+          }
+          /* 给数组添加当前画布 */
+          arr.push(
+              this.ctx.getImageData(
+                  0,
+                  0,
+                  this.canvas.width as any,
+                  this.canvas.height as any
+              )
+          );
 
-  onTouchStart(event: any) {
+          /* 赋值全局 */
+          this.pic = arr;
+          /* 操作下标累加 */
+          this.data.picIndex++;
+          /* 修改视图层按钮 */
+          this.setData({
+              picIndex: this.data.picIndex,
+              picLength: arr.length,
+          });
+      },
 
-    const { x, y } = event.touches[0];
-    console.log("onTouchStart",x,y)
-    const context = this.data.context!;
+     /* 撤销点击事件 */
+     handleBack() {
+       console.log("this.pic.length ",this.pic.length )
+      if (this.pic.length < 2) return ;
+      this.data.picIndex--;
+      this.setData({ picIndex: this.data.picIndex });
+      this.pasteCopy(); //粘贴上一步操作
+  }, 
+     /* 恢复点击事件 */
+     handleGo() {
+      if (this.data.picLength - 1 <= this.data.picIndex) return ;
+      this.data.picIndex++;
+      this.setData({ picIndex: this.data.picIndex });
+      this.pasteCopy(); //粘贴上一步操作
+  },
+    /* 橡皮点击事件 */
+    handleRubber() {
+      if (this.ctx.strokeStyle === "#FFFFFF") return ;
+      this.ctx.strokeStyle = "#FFFFFF";
+      // this.data.console[1].content.forEach((v) => (v.show = false));
+      // this.setData({ console: this.data.console });
+  },
+
+       /* 清空点击事件 */
+       handleRemove() {
+        this.pic.splice(1);
+        this.setData({ picIndex: 0, picLength: 1 });
+        this.pasteCopy(); //清空后粘贴操作
+    },
+  /* 粘贴复制的某个画布 */
+  pasteCopy() {
+      let i = this.data.picIndex;
+      console.log("这里的",i,this.pic)
+      this.ctx.putImageData(this.pic[i], 0, 0);
+  },
+
+  onReady() {
+    this.getCanvsDom();
+    this.initPencile();
+   
+  },
+  lineDraw(data: any) {
+    this.ctx.lineTo(data.x, data.y);
+    this.ctx.stroke();
+  },
+  initPencile() {
+    /* 设置线宽 */
+    // this.ctx.setLineDash([0]);
+    // this.lineType = this.data.console[0].content[i].type;
+    // this.ctx.strokeStyle = this.data.console[1].content[i].color;
+  },
+
+  /* 手指触摸画布开始 */
+  drawTouStart(event: any) {
+    let change = event.changedTouches[0];
+
+    this.ctx.beginPath(); //创建一条路径
+    this.sX = change.x;
+    this.sY = change.y;
     // context.setStrokeStyle('#000000')
     // context.setLineWidth(5)
-    // context.setLineCap('round')
-    context.moveTo(event.touches[0].x, event.touches[0].y)
-    // this.setData({
-    //   isPainting: true,
-    //   lastX: x,
-    //   lastY: y
-    // });
+
   },
 
-  onTouchMove(event: any) {
-    // if (!this.data.isPainting) return;
+  drawTouMove(event: any) {
+    let change = event.changedTouches[0];
 
-    const { x, y } = event.touches[0];
-    console.log("onTouchMove",x,y,event)
-    const lastX = this.data.lastX;
-    const lastY = this.data.lastY;
-    const context = this.data.context!;
-
-    console.log("lastX",lastX)
-    console.log("lastY",lastY)
-    console.log(context.draw)
-    // console.log("context",context)
-    context.beginPath();
- 
-
-    context.moveTo(lastX, lastY);
-    context.lineTo(x, y);
-    context.stroke();
-
-    this.setData({
-      lastX: x,
-      lastY: y
-    });
+    this.lineDraw(change);
+  },
+  /* 手指触摸画布结束 */
+  drawTouEnd(e: any) {
+    let data = e.changedTouches[0];
+    this.lineDraw(data);
+    this.ctx.closePath(); //当鼠标移抬起时,创建从当前点回到起始点的路径
+    this.copyCanvas(); //每次结束都复制本次画布结果
   },
 
-  onTouchEnd() {
-    if (this.data.isPainting) {
-      this.setData({
-        isPainting: false,
-        undoList: [...this.data.undoList, this.data.context!.getImageData(0, 0, this.data.canvasWidth, this.data.canvasHeight)]
-      });
-    }
-  },
-
-  undo() {
-    const context = this.data.context!;
-    const undoList = this.data.undoList;
-    if (undoList.length === 0) return;
-
-    context.putImageData(undoList[undoList.length - 1], 0, 0);
-    undoList.pop();
-    this.setData({
-      undoList
-    });
-  },
 
   clear() {
-    const context = this.data.context!;
-    context.clearRect(0, 0, this.data.canvasWidth, this.data.canvasHeight);
-    this.setData({
-      undoList: []
-    });
+
   }
 });
