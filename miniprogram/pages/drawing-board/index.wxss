@@ -27,7 +27,19 @@ height: 470px;
 .console{
   display: flex;
   flex-direction: row;
-  width: 90%;
+  justify-content: space-between;
+  width: 85%;
+}
+.console-left{
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100vw;
+}
+.console-right{
+margin-left: 10vw;
+  width: 30%;
 }
 .console-icon{
   width: 40px;

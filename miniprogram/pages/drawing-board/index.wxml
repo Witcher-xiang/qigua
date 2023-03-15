@@ -1,25 +1,22 @@
 <view class="canvas-wrapper">
   <view class="canvas-container">
     <view class="canvas-box">
-      <canvas id="myCanvas" canvas-id="myCanvas"  type="2d" disable-scroll  
-      style="width:320px;height:450px;" 
-      bindtouchstart="drawTouStart" bindtouchmove="drawTouMove" bindtouchend="drawTouEnd"></canvas>
+      <canvas id="myCanvas" canvas-id="myCanvas" type="2d" disable-scroll style="width:320px;height:450px;" bindtouchstart="drawTouStart" bindtouchmove="drawTouMove" bindtouchend="drawTouEnd"></canvas>
     </view>
- 
+
   </view>
 
   <view class="console">
-  <image class="console-icon" src="../../img/draw_icon/draw_eraser_normal@3x.png"
-  bindtap="handleRubber"
-  />
-  <image class="console-icon" src="../../img/draw_icon/draw_pen.png"
-    bindtap="handleRemove"
-  />
-  <image class="console-icon" src="../../img/draw_icon/draw_back_left.png"  bindtap="handleBack"/>
-  <image class="console-icon" src="../../img/draw_icon/draw_back_right.png" 
-  bindtap="handleGo"
-  />
-  <image class="console-icon" src="../../img/draw_icon/draw_back_clean.png"/>
+    <view class="console-left">
+      <image class="console-icon" src="../../img/draw_icon/draw_eraser_normal@3x.png" bindtap="handleRubber" />
+      <image class="console-icon" src="../../img/draw_icon/draw_pen.png" bindtap="handleRemove" />
+      <image class="console-icon" src="../../img/draw_icon/draw_back_left.png" bindtap="handleBack" />
+      <image class="console-icon" src="../../img/draw_icon/draw_back_right.png" bindtap="handleGo" />
+    </view>
+    <view class="console-right">
+      <image class="console-icon" src="../../img/draw_icon/draw_clean.png" />
+    </view>
+
   </view>
 
   <view class="btn">
