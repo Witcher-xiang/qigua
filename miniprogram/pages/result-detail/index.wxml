@@ -1,0 +1,11 @@
+<view class="canvas-wrapper">
+  <view class="canvas-container">
+    <view class="canvas-box">
+      
+    </view>
+  </view>
+  <view class="console">
+ 
+  </view>
+  <view class="btn" bindtap="handleSubmit" >详解</view>
+</view>

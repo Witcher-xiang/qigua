@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: center;
 }
+.picture{
+  width: 220px;
+  height: 220px;
+}
 .title{
   color: #CD9772;
 }

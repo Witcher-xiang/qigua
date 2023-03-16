@@ -3,7 +3,10 @@
     "pages/index/index",
     "pages/home/index",
     "pages/drawing-board/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/loading/index",
+    "pages/result/index",
+    "pages/result-detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
