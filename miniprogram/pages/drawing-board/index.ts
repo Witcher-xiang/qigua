@@ -7,6 +7,7 @@ Page({
   eY: 0, //结束时Y值
   pic: [], //保存用户的操作
   data: {
+    showView: false,
     context: null as any,
     canvasWidth: 0,
     canvasHeight: 0,
@@ -18,6 +19,25 @@ Page({
     picIndex: -1, //当前的pic操作下标
     picLength: 0, //当前记录画布数组的长度
   },
+
+  //打开规则提示
+      showRule: function () {
+        this.setData({
+          isRuleTrue: true
+        })
+      },
+      //关闭规则提示
+      hideRule: function () {
+        this.setData({
+          isRuleTrue: false
+        })
+      },
+
+      isClearAllDraw(){
+        this.setData({
+          showView: !this.data.showView
+        })
+      },
 
   /* 获取canvas节点 */
   getCanvsDom() {

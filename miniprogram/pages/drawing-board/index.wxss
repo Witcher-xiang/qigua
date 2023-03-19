@@ -68,3 +68,75 @@ margin-left: 10vw;
   text-align: center;
 
 }
+
+
+
+
+
+.receiveFile {
+  margin-top: 20rpx;
+  border-radius: 20px;
+  background: #fff;
+  color: #175acb;
+  border: 2rpx solid #175acb;
+}
+.dowicon{
+  width: 68px;
+  height: 68px;
+  margin-top: 50px;
+  margin:20px 117px 0px 122px;
+  text-align: center;
+}
+.inputcode{
+  padding-left: 20rpx;
+  height: 40px;
+  width: 78%;
+  color: #000;
+  font-weight: normal;
+  background-color: #F6F6FF;
+  border: 1px solid rgb(231, 230, 230) ;
+  margin: 17px ;
+}
+.open{
+  background-color: #888888;
+  border-radius: 30px;
+  font-weight: normal;
+  color: #fff;
+  margin-bottom: 50px;
+  margin: 10px 10px 10px 10px ;
+}
+.ruleHide{
+  height: 60rpx!important;
+  width: 60rpx!important;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+}
+.isRuleShow{
+  display: block;
+}
+.isRuleHide{
+  display: none;
+}
+.ruleZhezhao{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  /* border: 1px solid springgreen; */
+  background-color:rgba(0, 0, 0, .5); 
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.ruleZhezhaoContent{
+  padding: 56rpx 0px;
+  width: 80%;
+  background: #fff;
+  margin: 20% auto;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+} 
