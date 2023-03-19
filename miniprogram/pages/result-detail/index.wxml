@@ -1,11 +1,14 @@
-<view class="canvas-wrapper">
-  <view class="canvas-container">
-    <view class="canvas-box">
-      
+<view class="result-detail-wrapper">
+  <view class="result-detail-container">
+    <view class="result-detail-box-header">卦象详解</view> 
+    <view class="result-detail-box-card">
+    <view class="result-detail-box-card-content"></view>
+    <image  src="cloud://clouddev-1g0cvf6m39a42001.636c-clouddev-1g0cvf6m39a42001-1316562773/result-page/connect.png"/>
     </view>
   </view>
-  <view class="console">
- 
-  </view>
-  <view class="btn" bindtap="handleSubmit" >详解</view>
+
+<view class="result-detail-btn-container">
+  <view class="result-detail-back-btn"  bindtap="handleSubmit" >返回</view>
+  <view class="result-detail-again-btn"  bindtap="handleSubmit" >再起一卦</view>
+</view>
 </view>

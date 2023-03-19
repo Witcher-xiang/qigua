@@ -1,8 +1,9 @@
 
 Page({
-    onLoad() {
-        setTimeout(()=>{
-            console.log("执行了")
-        },3000)
-    },
+  handleSubmit(){
+    
+    wx.navigateTo({
+      url: '../result-detail/index',
+    })
+  }
 })
