@@ -20,20 +20,20 @@
   font-family: Kaiti SC;
 }
 .desc{
-  margin-top: 16px;
+  margin-top: 32rpx;
   color: #7C4A28;
   font-size: 16px;
   text-align: center;
 }
 
 .pic{
-  margin-top: 40px;
+  margin-top: 80rpx;
   width: 251px;
 height: 210px;
 }
 
 .btn{
-  width: 321px;
-  height: 40px;
+  width: 640rpx;
+  height: 80rpx;
 
 }
