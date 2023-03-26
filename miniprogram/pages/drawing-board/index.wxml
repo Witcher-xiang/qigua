@@ -1,28 +1,37 @@
 <view class="canvas-wrapper">
   <view class="canvas-container">
     <view class="canvas-box">
+      <span class="tips" wx:if="{{isPainting === false}}">施主请在此画布内涂画，完成后点击”提交“即可</span>
       <canvas id="myCanvas" canvas-id="myCanvas" type="2d" disable-scroll style="width:320px;height:450px;" bindtouchstart="drawTouStart" bindtouchmove="drawTouMove" bindtouchend="drawTouEnd"></canvas>
     </view>
   </view>
   <view class="console">
     <view class="console-left">
-      <image class="console-icon" src="../../img/draw_icon/draw_eraser_normal@3x.png" bindtap="handleRubber" />
-      <image class="console-icon" src="../../img/draw_icon/draw_pen.png" bindtap="handleRemove" />
+      <image wx:if="{{selected === 'rubber'}}"  class="console-icon" src="../../img/draw_icon/icon_eraser_light.png" bindtap="handleRubber" />
+      <image wx:else  class="console-icon" src="../../img/draw_icon/draw_eraser_normal@3x.png" bindtap="handleRubber" />
+      <image wx:if="{{selected === 'pen'}}" class="console-icon" src="../../img/draw_icon/icon_pen_light.png" bindtap="handlePen" />
+      <image wx:else class="console-icon" src="../../img/draw_icon/draw_pen.png" bindtap="handlePen" />
       <image class="console-icon" src="../../img/draw_icon/draw_back_left.png" bindtap="handleBack" />
       <image class="console-icon" src="../../img/draw_icon/draw_back_right.png" bindtap="handleGo" />
     </view>
     <view class="console-right" bindtap="isClearAllDraw">
-      <image class="console-icon" src="../../img/draw_icon/draw_clean.png" />
+      <image class="console-icon" src="../../img/draw_icon/draw_clean.png"/>
     </view>
   </view>
 
   <!-- 遮罩区域 -->
-  <view class="ruleZhezhao {{showView?'isRuleShow':'isRuleHide'}}">
-    <view class='ruleZhezhaoContent'>
-      <button class="open" style="width:54vw;height:12vw;" bindtap="isClearAllDraw">打开</button>
+  <view class="modal {{showView?'isModalShow':'isModalHide'}}">
+    <view class="modal-content">
+      <view class="modal-content-title" >确定要清空当前画布吗？</view>
+      <view class="modal-content-button">
+        <view class="cancel" bindtap="hideModal">取消</view>
+        <view class="yes" bindtap="isClearAllDraw">确定</view>
+      </view>
+      
 
     </view>
   </view>
 
-  <view class="btn" bindtap="handleSubmit" >提交</view>
+<view wx:if="{{isPainting === false}}" class="btn-disable"  >提交</view>
+  <view wx:else class="btn" bindtap="handleSubmit" >提交</view>
 </view>

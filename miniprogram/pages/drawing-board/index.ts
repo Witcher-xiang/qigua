@@ -7,6 +7,7 @@ Page({
   eY: 0, //结束时Y值
   pic: [], //保存用户的操作
   data: {
+    selected: "pen", //选中控制台的类型
     showView: false,
     context: null as any,
     canvasWidth: 0,
@@ -19,25 +20,24 @@ Page({
     picIndex: -1, //当前的pic操作下标
     picLength: 0, //当前记录画布数组的长度
   },
-
   //打开规则提示
-      showRule: function () {
-        this.setData({
-          isRuleTrue: true
-        })
-      },
-      //关闭规则提示
-      hideRule: function () {
-        this.setData({
-          isRuleTrue: false
-        })
-      },
+  showModal: function () {
+    this.setData({
+      isRuleTrue: true,
+    });
+  },
+  //关闭规则提示
+  hideModal: function () {
+    this.setData({
+      showView: false,
+    });
+  },
 
-      isClearAllDraw(){
-        this.setData({
-          showView: !this.data.showView
-        })
-      },
+  isClearAllDraw() {
+    this.setData({
+      showView: !this.data.showView,
+    });
+  },
 
   /* 获取canvas节点 */
   getCanvsDom() {
@@ -107,7 +107,11 @@ Page({
     if (this.ctx.strokeStyle === "#FFFFFF") return;
     this.ctx.strokeStyle = "#FFFFFF";
     // this.data.console[1].content.forEach((v) => (v.show = false));
-    // this.setData({ console: this.data.console });
+    this.setData({ selected: "rubber" });
+  },
+
+  handlePen(){
+    this.setData({ selected: "pen" });
   },
 
   /* 清空点击事件 */
@@ -140,6 +144,9 @@ Page({
 
   /* 手指触摸画布开始 */
   drawTouStart(event: any) {
+    this.setData({
+      isPainting: true,
+    })
     let change = event.changedTouches[0];
 
     this.ctx.beginPath(); //创建一条路径
@@ -162,11 +169,11 @@ Page({
     this.copyCanvas(); //每次结束都复制本次画布结果
   },
   // 点击提交
-  handleSubmit(){
+  handleSubmit() {
     console.log("111");
     wx.navigateTo({
-      url: '../loading/index',
-    })
+      url: "../loading/index",
+    });
   },
 
   clear() {},
