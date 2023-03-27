@@ -14,7 +14,7 @@
   align-items: center;
   width: 359px;
   height: 515px;
-  background-image: url('https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG7.png');
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG7.png");
 }
 
 .result-detail-box-header {
@@ -26,24 +26,27 @@
   background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG9.png");
 }
 
-.result-detail-box-card {
-  width: 80vw;
-  margin-top: 12px;
-}
-.result-detail-box-card-content {
-  width: 280px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.result-detail-box-card-content-divination{
+.result-detail-box-card-content-divination {
+  margin: 20px 0;
   width: 72px;
   height: 72px;
-  background-image: url('https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG29.png');
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG29.png");
 }
-.result-detail-box-card-content-text{
-  color: #7C4A28;
+
+.result-detail-title {
+  color: #7c4a28;
+  font-size: 24px;
+  font-family: Kaiti SC;
+  margin-bottom: 12px;
+}
+
+.result-detail-box-card-content-text {
+  font-size: 16px;
+  width: 280px;
+  height: 244px;
+  overflow: auto;
+  color: #7c4a28;
+  text-align: justify; /* 浏览器可能不支持 */
 }
 
 .result-detail-btn-container {
@@ -58,8 +61,8 @@
   line-height: 47px;
   width: 153px;
   height: 47px;
-  background-image: url('https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG34.png');
-  color: #7C4A28;
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG34.png");
+  color: #7c4a28;
 }
 
 .result-detail-again-btn {
@@ -67,13 +70,11 @@
   line-height: 47px;
   width: 153px;
   height: 47px;
-  background-image: url('https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG38.png');
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG38.png");
   color: #fff;
 }
 
 .btn {
-
-
   height: 44px;
   width: 321px;
   line-height: 44px;
@@ -81,5 +82,81 @@
   color: #fff;
   font-size: 32rpx;
   text-align: center;
+}
 
+.result-detail-modal{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  /* border: 1px solid springgreen; */
+  background-color:rgba(0, 0, 0, .5); 
+  top: 0;
+  left: 0;
+  z-index: 999999;
+}
+.result-detail-modal-content{
+  top: 240rpx;
+  padding: 56rpx 0px;
+  width: 80%;
+  
+  background: #fff;
+  margin: 20% auto;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+} 
+
+.result-detail-modal-content-title{
+  font-family: Kaiti SC;
+  font-size: 28px;
+  color: #7C4A28;
+  text-align: center;
+}
+
+.result-detail-modal-content-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.result-detail-yes{
+  background-image: url('https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/draw-borad/btn_main_normal_min%403x.png?sign=4ca657aa69573ab91105bdf3d24c2daf&t=1679829008');
+  height: 46px;
+  width: 108px;
+  line-height: 44px;
+  border-radius: 4rpx;
+  color: white;
+  font-size: 32rpx;
+  text-align: center;
+  margin: 12px;
+  background-repeat: no-repeat;
+}
+.result-detail-modal-advertise{
+  margin: 12px 0 26px;
+  width: 241px;
+  height: 181px;
+  background: gray;
+
+}
+
+.result-detail-cancel{
+  background-image: url('https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/draw-borad/btn_second_normal_min%403x.png?sign=c2cf0999af48454abc5fae0b1bb65dce&t=1679828859');
+  height: 48px;
+  line-height: 44px;
+  border-radius: 4rpx;
+  color: #7C4A28;
+  font-size: 32rpx;
+  text-align: center;
+  background-repeat: no-repeat;
+  width: 108px;
+  margin: 12px;
+}
+
+.isModalShow{
+  display: block;
+}
+.isModalHide{
+  display: none;
 }

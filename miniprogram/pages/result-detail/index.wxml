@@ -1,14 +1,26 @@
 <view class="result-detail-wrapper">
   <view class="result-detail-container">
-    <view class="result-detail-box-header">卦象详解</view> 
-    <view class="result-detail-box-card">
-    <view class="result-detail-box-card-content"></view>
-    <image  src="cloud://clouddev-1g0cvf6m39a42001.636c-clouddev-1g0cvf6m39a42001-1316562773/result-page/connect.png"/>
+    <view class="result-detail-box-header">卦象详解</view>
+    <view class="result-detail-box-card-content-divination"></view>
+    <view  class="result-detail-title" >主卦：归妹</view>
+    <view class='result-detail-box-card-content-text'>
+      归妹卦象征着少女，代表着多姿多彩的青春年华，富有 朝气和生命力。抽到归妹卦，表示此时你正处于一种充满活力、充满激情的状态，你的内心充满了向往和追求，你对未来充满美好的憧憬和希望。 此时，你应该抓住机会，积极地开拓新的领域，尝试新的事物，让自己的生活更加充实和 有意义 。 同时，归妹卦也暗示着你需要注意自己的言行举止，避免过分冲动和轻率，要保持理智和清醒，避免因为浅薄的决策而带来不必要的麻烦和损失。
     </view>
   </view>
+  <view class="result-detail-btn-container">
+    <view class="result-detail-back-btn" bindtap="handleSubmit">返回</view>
+    <view class="result-detail-again-btn" bindtap="handleSubmit">再起一卦</view>
+  </view>
 
-<view class="result-detail-btn-container">
-  <view class="result-detail-back-btn"  bindtap="handleSubmit" >返回</view>
-  <view class="result-detail-again-btn"  bindtap="handleSubmit" >再起一卦</view>
-</view>
+    <!-- 遮罩区域 -->
+  <view class="result-detail-modal {{showView?'isModalShow':'isModalHide'}}">
+    <view class="result-detail-modal-content">
+      <view class="result-detail-modal-content-title" bindtap="isClearAllDraw">再起一卦？</view>
+      <view  class="result-detail-modal-advertise"></view>
+      <view class="result-detail-modal-content-button">
+        <view class="result-detail-cancel" bindtap="hideModal">不，谢谢</view>
+        <view class="result-detail-yes" bindtap="hideModal">获得机缘</view>
+      </view>
+    </view>
+  </view>
 </view>

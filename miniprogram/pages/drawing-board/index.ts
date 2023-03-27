@@ -20,13 +20,13 @@ Page({
     picIndex: -1, //当前的pic操作下标
     picLength: 0, //当前记录画布数组的长度
   },
-  //打开规则提示
+  //显示Modal
   showModal: function () {
     this.setData({
-      isRuleTrue: true,
+      showView: true,
     });
   },
-  //关闭规则提示
+  //关闭Modal
   hideModal: function () {
     this.setData({
       showView: false,
