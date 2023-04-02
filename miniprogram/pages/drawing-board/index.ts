@@ -38,7 +38,12 @@ Page({
       showView: !this.data.showView,
     });
   },
+  isClearAllDrawConfirm() {
+   this.isClearAllDraw();
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
 
+  
   /* 获取canvas节点 */
   getCanvsDom() {
     wx.createSelectorQuery()
@@ -170,7 +175,7 @@ Page({
   },
   // 点击提交
   handleSubmit() {
-    console.log("111");
+    console.log("画布已提交");
     wx.navigateTo({
       url: "../loading/index",
     });

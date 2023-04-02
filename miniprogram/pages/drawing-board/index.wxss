@@ -19,6 +19,7 @@
 }
 
 .canvas-box {
+  z-index: 1;
   font-family: Kaiti SC;
   position: relative;
   background-color: rgb(151, 106, 106);
@@ -129,7 +130,7 @@ margin-left: 10vw;
   background-color:rgba(0, 0, 0, .5); 
   top: 0;
   left: 0;
-  z-index: 999999;
+  z-index: 999;
 }
 .modal-content{
   top: 240rpx;
@@ -159,7 +160,8 @@ margin-left: 10vw;
   justify-content: space-between;
 }
 .yes{
-  background-image: url('https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/draw-borad/btn_main_normal_min%403x.png?sign=4ca657aa69573ab91105bdf3d24c2daf&t=1679829008');
+  /* 直接获取本地图片无效 */
+  background-image: url('../../img/modal/yes.png');
   height: 46px;
   width: 108px;
   line-height: 44px;
@@ -172,7 +174,8 @@ margin-left: 10vw;
 }
 
 .cancel{
-  background-image: url('https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/draw-borad/btn_second_normal_min%403x.png?sign=c2cf0999af48454abc5fae0b1bb65dce&t=1679828859');
+  /* 直接获取本地图片无效 */
+  background-image: url('../../img/modal/cancel.png');
   height: 48px;
   line-height: 44px;
   border-radius: 4rpx;
