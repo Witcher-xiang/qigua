@@ -4,16 +4,25 @@
     <view class="result-pic">
       <view class="result-pic-content">
         <view class="divination">
-          <view class="divination-top"  ></view>
+          <view class="divination-top"  >
+
+            <view class="long-line"></view>
+            <view class="short-line-container">
+              <view class="short-line"></view>
+              <view class="short-line"></view>
+            </view>
+            <view class="long-line"></view>
+
+          </view>
           <view class="divination-bottom" ></view>
           
         </view>
-        <view class="title">诸事谨慎</view>
+        <view class="title">{{status}}</view>
       </view>
     </view>
-    <view class="head-line">坤</view>
+    <view class="head-line">{{property}}</view>
     <view class="result-detail">
-      元亨，利牝马之贞。君子有攸往，先迷后得主。利西南得朋，东北丧朋。安贞吉。
+      {{desc}}
     </view>
   </view>
 
