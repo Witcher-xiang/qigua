@@ -62,7 +62,7 @@ background: #7C4A28;
   margin-bottom: 5px;
 }
 .divination-bottom {
-  background-image: url("https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/result-page/%E7%BB%84%204.png?sign=d9e7cca472a2a839129cdf8990d91bc4&t=1679830327");
+  /* background-image: url("https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/result-page/%E7%BB%84%204.png?sign=d9e7cca472a2a839129cdf8990d91bc4&t=1679830327"); */
   width: 56px;
   height: 28px;
 }
