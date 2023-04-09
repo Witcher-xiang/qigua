@@ -52,8 +52,16 @@
       <view class="result-detail-modal-advertise"></view>
       <view class="result-detail-modal-content-button">
         <view class="result-detail-cancel" bindtap="hideModal">不，谢谢</view>
-        <view class="result-detail-yes" bindtap="hideModal">获得机缘</view>
+        <view class="result-detail-yes" bindtap="getChance">获得机缘</view>
       </view>
     </view>
+  </view>
+
+  <!-- 分享的遮罩区域 -->
+  <view class="result-detail-modal-share {{showShareView ? 'isModalShow':'isModalHide'}}">
+      <view class="result-detail-modal-share-content-button">
+        <view class="result-detail-modal-share-pic" bindtap="hideModal" style="background-image: url('../../img/share/btn_second_normal_mid.png');" >分享至朋友圈</view>
+        <view class="result-detail-modal-share-save-pic" bindtap="hideModal"  style="background-image: url('../../img/share/btn_main_normal_mid.png');">保存图片</view>
+      </view>
   </view>
 </view>

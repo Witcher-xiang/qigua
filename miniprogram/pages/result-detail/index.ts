@@ -4,6 +4,7 @@ Page({
     name: "",
     status: "",
     showView: false,
+    showShareView: false,
     formTopIndex: [""],
     formBottomIndex: [""],
     property:""
@@ -16,6 +17,18 @@ Page({
     console.log("详情页页面：：",formIndex)
     this.setData({formTopIndex, formBottomIndex,name,desc,status,property})
   },
+  //显示分享Modal
+  showShareModal: function () {
+    this.setData({
+      showShareView: true,
+    });
+  },
+  //关闭分享Modal
+  hideShareModal: function () {
+    this.setData({
+      showShareView: false,
+    });
+  },
   //显示Modal
   showModal: function () {
     this.setData({
@@ -27,6 +40,10 @@ Page({
     this.setData({
       showView: false,
     });
+  },
+  getChance: function(){
+    this.hideModal();
+    this.showShareModal();
   },
   handleSubmit(){
     this.setData({
