@@ -1,17 +1,44 @@
 <view class="result-wrapper">
   <view class="result-container">
-  
     <view class="result-pic">
       <view class="result-pic-content">
-        <view class="divination">哦吼</view>
-        <view class="title">诸事谨慎</view>
+        <view class="divination">
+          <!-- 卦象的顶部区域 -->
+          <view class="divination-top">
+            <view wx:for="{{formIndexTop}}" wx:for-item="i" key="i">
+              <view wx:if="{{i == 1}}">
+                <view class="long-line"></view>
+              </view>
+              <view wx:else>
+                <view class="short-line-container">
+                  <view class="short-line"></view>
+                  <view class="short-line"></view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+          <!-- 卦象的底部区域 -->
+          <view class="divination-bottom">
+            <view wx:for="{{formIndexBottom}}" wx:for-item="i" wx:key="i">
+              <view wx:if="{{i == 1}}">
+                <view class="long-line"></view>
+              </view>
+              <view wx:else>
+                <view class="short-line-container">
+                  <view class="short-line"></view>
+                  <view class="short-line"></view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </view>
+        <view class="title">{{status}}</view>
       </view>
     </view>
-    <view class="head-line">坤</view>
-    <view class="result-detail">
-      元亨，利牝马之贞。君子有攸往，先迷后得主。利西南得朋，东北丧朋。安贞吉。
-    </view>
+    <view class="head-line">{{property}}</view>
+    <view class="result-detail">{{desc}}</view>
   </view>
-
   <view class="btn" bindtap="handleSubmit">详解</view>
 </view>

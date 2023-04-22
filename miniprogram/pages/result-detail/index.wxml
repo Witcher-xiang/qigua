@@ -1,14 +1,67 @@
 <view class="result-detail-wrapper">
   <view class="result-detail-container">
-    <view class="result-detail-box-header">卦象详解</view> 
-    <view class="result-detail-box-card">
-    <view class="result-detail-box-card-content"></view>
-    <image  src="cloud://clouddev-1g0cvf6m39a42001.636c-clouddev-1g0cvf6m39a42001-1316562773/result-page/connect.png"/>
+    <view class="result-detail-box-header">卦象详解</view>
+    <view class="result-detail-box-card-content-divination">
+
+     <!-- 卦象的顶部区域 -->
+     <view class="divination-top">
+            <view wx:for="{{formTopIndex}}" wx:for-item="i" key="i">
+              <view wx:if="{{i == 1}}">
+                <view class="long-line"></view>
+              </view>
+              <view wx:else>
+                <view class="short-line-container">
+                  <view class="short-line"></view>
+                  <view class="short-line"></view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+          <!-- 卦象的底部区域 -->
+      <view class="divination-bottom">
+        <view wx:for="{{formBottomIndex}}" wx:for-item="i" wx:key="i">
+          <view wx:if="{{i == 1}}">
+            <view class="long-line"></view>
+          </view>
+          <view wx:else>
+            <view class="short-line-container">
+              <view class="short-line"></view>
+              <view class="short-line"></view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+    <view class="result-detail-title">主卦：{{property}}</view>
+    <view class='result-detail-box-card-content-text'>
+      {{desc}}
+    </view>
+  </view>
+  <view class="result-detail-btn-container">
+    <view class="result-detail-back-btn" bindtap="handleSubmitGoback">返回</view>
+    <view class="result-detail-again-btn" bindtap="handleSubmit">再起一卦</view>
+  </view>
+
+  <!-- 遮罩区域 -->
+  <view class="result-detail-modal {{showView?'isModalShow':'isModalHide'}}">
+    <view class="result-detail-modal-content">
+      <view class="result-detail-modal-content-title" bindtap="isClearAllDraw">再起一卦？</view>
+      <view class="result-detail-modal-advertise"></view>
+      <view class="result-detail-modal-content-button">
+        <view class="result-detail-cancel" bindtap="hideModal">不，谢谢</view>
+        <view class="result-detail-yes" bindtap="getChance">获得机缘</view>
+      </view>
     </view>
   </view>
 
-<view class="result-detail-btn-container">
-  <view class="result-detail-back-btn"  bindtap="handleSubmit" >返回</view>
-  <view class="result-detail-again-btn"  bindtap="handleSubmit" >再起一卦</view>
-</view>
+  <!-- 分享的遮罩区域 -->
+  <view class="result-detail-modal-share {{showShareView ? 'isModalShow':'isModalHide'}}">
+      <view class="result-detail-modal-share-content-button">
+        <view class="result-detail-modal-share-pic" bindtap="hideModal" style="background-image: url('../../img/share/btn_second_normal_mid.png');" >分享至朋友圈</view>
+        <view class="result-detail-modal-share-save-pic" bindtap="hideModal"  style="background-image: url('../../img/share/btn_main_normal_mid.png');">保存图片</view>
+      </view>
+  </view>
 </view>

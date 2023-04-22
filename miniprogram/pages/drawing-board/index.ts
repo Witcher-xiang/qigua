@@ -6,7 +6,9 @@ Page({
   eX: 0, //结束时X值
   eY: 0, //结束时Y值
   pic: [], //保存用户的操作
+  timing:0,
   data: {
+    selected: "pen", //选中控制台的类型
     showView: false,
     context: null as any,
     canvasWidth: 0,
@@ -18,27 +20,58 @@ Page({
     isPainting: false,
     picIndex: -1, //当前的pic操作下标
     picLength: 0, //当前记录画布数组的长度
+    
+  },
+  onLoad  () {
+    setInterval(()=>{
+      this.timing++;
+    })
+  },
+  //显示Modal
+  showModal: function () {
+    this.setData({
+      showView: true,
+    });
+  },
+  //关闭Modal
+  hideModal: function () {
+    this.setData({
+      showView: false,
+    });
   },
 
-  //打开规则提示
-      showRule: function () {
-        this.setData({
-          isRuleTrue: true
-        })
-      },
-      //关闭规则提示
-      hideRule: function () {
-        this.setData({
-          isRuleTrue: false
-        })
-      },
+  isClearAllDraw() {
+    this.setData({
+      showView: !this.data.showView,
+    });
+  },
+  isClearAllDrawConfirm() {
+   this.isClearAllDraw();
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+  getPxFromCanvas(){
+    // #000000
+    const res = this.ctx.getImageData(0,0,this.canvas.width, this.canvas.height);
+    console.log(res,this.canvas.width,this.canvas.height)
+    const { data } = res;
+    const targetColor = [0, 0, 0,255]; // 目标颜色，即黑色
+    let count = 0; // 计数器，记录目标颜色的像素数量
+    for (let i = 0; i < data.length; i += 4) { // 遍历每个像素点
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      const a = data[i + 3];
+      if (r === targetColor[0] && g === targetColor[1] && b === targetColor[2] && a === targetColor[3]) {
+        // 如果当前像素点的颜色值与目标颜色相同，计数器加一
+        count++;
+      }
+    }
+    console.log('目标颜色的像素数量：', count);
+    return count;
+    
+  },
 
-      isClearAllDraw(){
-        this.setData({
-          showView: !this.data.showView
-        })
-      },
-
+  
   /* 获取canvas节点 */
   getCanvsDom() {
     wx.createSelectorQuery()
@@ -107,7 +140,11 @@ Page({
     if (this.ctx.strokeStyle === "#FFFFFF") return;
     this.ctx.strokeStyle = "#FFFFFF";
     // this.data.console[1].content.forEach((v) => (v.show = false));
-    // this.setData({ console: this.data.console });
+    this.setData({ selected: "rubber" });
+  },
+
+  handlePen(){
+    this.setData({ selected: "pen" });
   },
 
   /* 清空点击事件 */
@@ -136,6 +173,9 @@ Page({
   drawTouStart(event: any) {
     const pencilColor = '#7C4A28';
     const pencileLineWidth = 3;
+    this.setData({
+      isPainting: true,
+    })
     let change = event.changedTouches[0];
    
     this.ctx.beginPath(); //创建一条路径
@@ -144,7 +184,7 @@ Page({
     this.ctx.setLineWidth =pencileLineWidth;
     this.sX = change.x;
     this.sY = change.y;
-    // context.setStrokeStyle('#000000')
+    // this.ctx.setStrokeStyle('rgb(0,0,0)')
     // context.setLineWidth(5)
   },
 
@@ -161,11 +201,13 @@ Page({
     this.copyCanvas(); //每次结束都复制本次画布结果
   },
   // 点击提交
-  handleSubmit(){
-    console.log("111");
+  handleSubmit() {
+    console.log("画布已提交",this.ctx.strokeStyle);
+    // 像素数量
+    const px = this.getPxFromCanvas();
     wx.navigateTo({
-      url: '../loading/index',
-    })
+      url: `../loading/index?px=${px}&timing=${this.timing}`,
+    });
   },
 
   clear() {},
