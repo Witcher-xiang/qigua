@@ -125,24 +125,23 @@ Page({
 
   onReady() {
     this.getCanvsDom();
-    this.initPencil();
   },
   lineDraw(data: any) {
     this.ctx.lineTo(data.x, data.y);
     this.ctx.stroke();
   },
-  initPencil() {
-    /* 设置线宽 */
-    // this.ctx.setLineDash([0]);
-    // this.lineType = this.data.console[0].content[i].type;
-    // this.ctx.strokeStyle = this.data.console[1].content[i].color;
-  },
+
 
   /* 手指触摸画布开始 */
   drawTouStart(event: any) {
+    const pencilColor = '#7C4A28';
+    const pencileLineWidth = 3;
     let change = event.changedTouches[0];
-
+   
     this.ctx.beginPath(); //创建一条路径
+    // 添加画笔颜色
+    this.ctx.strokeStyle  = pencilColor;
+    this.ctx.setLineWidth =pencileLineWidth;
     this.sX = change.x;
     this.sY = change.y;
     // context.setStrokeStyle('#000000')

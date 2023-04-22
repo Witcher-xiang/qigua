@@ -21,7 +21,7 @@ left: 35px;
 width: 320px;
 height: 470px;
 
-  background-color: rgb(151, 106, 106);
+
 }
 
 .console{
