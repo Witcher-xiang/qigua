@@ -9,7 +9,7 @@
     <view class="console-left">
       <image wx:if="{{selected === 'rubber'}}" class="console-icon" src="../../img/draw_icon/icon_eraser_light.png" bindtap="handleRubber" />
       <image wx:else class="console-icon" src="../../img/draw_icon/draw_eraser_normal@3x.png" bindtap="handleRubber" />
-      <image wx:if="{{selected === 'pen'}}" class="console-icon" src="../../img/draw_icon/icon_pen_light.png" bindtap="handlePen" />
+      <image wx:if="{{selected === 'pencil'}}" class="console-icon" src="../../img/draw_icon/icon_pen_light.png" bindtap="handlePen" />
       <image wx:else class="console-icon" src="../../img/draw_icon/draw_pen.png" bindtap="handlePen" />
       <image class="console-icon" src="../../img/draw_icon/draw_back_left.png" bindtap="handleBack" />
       <image class="console-icon" src="../../img/draw_icon/draw_back_right.png" bindtap="handleGo" />
@@ -18,19 +18,20 @@
       <image class="console-icon" src="../../img/draw_icon/draw_clean.png" />
     </view>
   </view>
-
   <view wx:if="{{isPainting === false}}" class="btn-disable">提交</view>
   <view wx:else class="btn" bindtap="handleSubmit">提交</view>
-
-
 </view>
-    <!-- 遮罩区域，模拟机情况canvs下层级会过高，真机是没问题 -->
-    <cover-view class="modal {{showView?'isModalShow':'isModalHide'}}">
-    <cover-view class="modal-content">
-      <cover-view class="modal-content-title">确定要清空当前画布吗？</cover-view>
-      <cover-view class="modal-content-button">
-        <cover-view class="cancel" bindtap="hideModal" style="background-image: url('../../img/modal/cancel.png');">取消</cover-view>
-        <cover-view class="yes" bindtap="isClearAllDrawConfirm" style="background-image: url('../../img/modal/yes.png');">确定</cover-view>
+<!-- 遮罩区域，模拟机情况canvs下层级会过高，真机是没问题 -->
+<cover-view class="modal {{showView?'isModalShow':'isModalHide'}}">
+  <cover-view class="modal-content">
+    <cover-view class="modal-content-title">确定要清空当前画布吗？</cover-view>
+    <cover-view class="modal-content-button">
+      <cover-view class="cancel" bindtap="hideModal" style="background-image: url('../../img/modal/cancel.png');">
+        取消
+      </cover-view>
+      <cover-view class="yes" bindtap="isClearAllDrawConfirm" style="background-image: url('../../img/modal/yes.png');">
+        确定
       </cover-view>
     </cover-view>
   </cover-view>
+</cover-view>

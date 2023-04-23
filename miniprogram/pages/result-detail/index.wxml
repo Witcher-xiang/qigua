@@ -35,6 +35,8 @@
       </view>
 
     </view>
+    <painter palette="{{painting}}" bind:imgOK="onImgOK" />
+   
     <view class="result-detail-title">主卦：{{property}}</view>
     <view class='result-detail-box-card-content-text'>
       {{desc}}
@@ -57,11 +59,21 @@
     </view>
   </view>
 
+  
+
   <!-- 分享的遮罩区域 -->
-  <view class="result-detail-modal-share {{showShareView ? 'isModalShow':'isModalHide'}}">
-      <view class="result-detail-modal-share-content-button">
-        <view class="result-detail-modal-share-pic" bindtap="hideModal" style="background-image: url('../../img/share/btn_second_normal_mid.png');" >分享至朋友圈</view>
-        <view class="result-detail-modal-share-save-pic" bindtap="hideModal"  style="background-image: url('../../img/share/btn_main_normal_mid.png');">保存图片</view>
+  <view class="result-detail-modal-share {{showShareView ? 'isModalShow':'isModalHide'}}" bindtap="hideShareModal">
+    <view class="poster-img-container"  style="width: 100%; height: 520px;">
+      <image src="{{image}}" style="width:690rpx; height: 1040rpx; "/>
+
+          <!-- <image src='../../img/result/img_poster.png' class="poster-img"/> -->
+    </view>
+
+
+
+      <view class="result-detail-modal-share-content-button" catchtouchmove="preventD">
+        <button open-type="share" id="result-detail-modal-share-pic" catchtouchmove="preventD" catchtap="onShareTimeline" style="background-image: url('../../img/share/btn_second_normal_mid.png');" >分享至朋友圈</button>
+        <button id="result-detail-modal-share-save-pic" catchtap="hideModal" catchtouchmove="preventD"  style="background-image: url('../../img/share/btn_main_normal_mid.png');">保存图片</button>
       </view>
   </view>
 </view>

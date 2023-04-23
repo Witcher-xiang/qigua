@@ -1,3 +1,8 @@
+enum ConsoleType {
+  Pencil = 'pencil',
+  rubber = 'rubber',
+}
+
 Page({
   canvas: null as any, //画布实例
   ctx: null as any, //画笔实例
@@ -8,7 +13,7 @@ Page({
   pic: [], //保存用户的操作
   timing:0,
   data: {
-    selected: "pen", //选中控制台的类型
+    selected: ConsoleType.Pencil, //选中控制台的类型
     showView: false,
     context: null as any,
     canvasWidth: 0,
@@ -50,11 +55,10 @@ Page({
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   getPxFromCanvas(){
-    // #000000
     const res = this.ctx.getImageData(0,0,this.canvas.width, this.canvas.height);
     console.log(res,this.canvas.width,this.canvas.height)
     const { data } = res;
-    const targetColor = [0, 0, 0,255]; // 目标颜色，即黑色
+    const targetColor = [124,74,40,255]; // 目标颜色
     let count = 0; // 计数器，记录目标颜色的像素数量
     for (let i = 0; i < data.length; i += 4) { // 遍历每个像素点
       const r = data[i];
@@ -137,14 +141,11 @@ Page({
   },
   /* 橡皮点击事件 */
   handleRubber() {
-    if (this.ctx.strokeStyle === "#FFFFFF") return;
-    this.ctx.strokeStyle = "#FFFFFF";
-    // this.data.console[1].content.forEach((v) => (v.show = false));
-    this.setData({ selected: "rubber" });
+    this.setData({ selected: ConsoleType.rubber });
   },
 
   handlePen(){
-    this.setData({ selected: "pen" });
+    this.setData({ selected: ConsoleType.Pencil });
   },
 
   /* 清空点击事件 */
@@ -156,7 +157,6 @@ Page({
   /* 粘贴复制的某个画布 */
   pasteCopy() {
     let i = this.data.picIndex;
-    console.log("这里的", i, this.pic);
     this.ctx.putImageData(this.pic[i], 0, 0);
   },
 
@@ -171,8 +171,8 @@ Page({
 
   /* 手指触摸画布开始 */
   drawTouStart(event: any) {
-    const pencilColor = '#7C4A28';
-    const pencileLineWidth = 3;
+    const pencilColor = this.data.selected === ConsoleType.Pencil ? 'rgba(124, 74, 40,1)' : '#FFFEF7'; 
+    const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? 2 : 20;
     this.setData({
       isPainting: true,
     })
@@ -181,7 +181,7 @@ Page({
     this.ctx.beginPath(); //创建一条路径
     // 添加画笔颜色
     this.ctx.strokeStyle  = pencilColor;
-    this.ctx.setLineWidth =pencileLineWidth;
+    this.ctx.lineWidth =pencilLineWidth;
     this.sX = change.x;
     this.sY = change.y;
     // this.ctx.setStrokeStyle('rgb(0,0,0)')
