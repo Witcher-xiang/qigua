@@ -72,8 +72,8 @@
 
 
       <view class="result-detail-modal-share-content-button" catchtouchmove="preventD">
-        <button open-type="share" id="result-detail-modal-share-pic" catchtouchmove="preventD" catchtap="onShareTimeline" style="background-image: url('../../img/share/btn_second_normal_mid.png');" >分享至朋友圈</button>
-        <button id="result-detail-modal-share-save-pic" catchtap="hideModal" catchtouchmove="preventD"  style="background-image: url('../../img/share/btn_main_normal_mid.png');">保存图片</button>
+        <button open-type="share" id="result-detail-modal-share-pic" catchtouchmove="preventD" catchtap="onShareTimeline" style="background-image: url('https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/share/btn_second_normal_mid.png?sign=8f11b91ffc151e489cf723bec336a86e&t=1683042350');" >分享朋友圈</button>
+        <button id="result-detail-modal-share-save-pic" catchtap="saveImage" catchtouchmove="preventD"  style="background-image: url('https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/share/btn_main_normal_mid.png?sign=5eae98e5b4464d64447ea4097a1f67aa&t=1683042324');">保存图片</button>
       </view>
   </view>
 </view>
