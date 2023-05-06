@@ -43,7 +43,7 @@ Page({
       type: "rect",
       css: {
         ...commonCss,
-        width: "13px",
+        width: "12px",
 
         left: direction === "left" ? "315rpx" : "345rpx",
         top,
@@ -52,7 +52,7 @@ Page({
 
     const getLongLine = ({
       id = "line_01",
-      left = "343rpx",
+      left = "340rpx",
       top = "265rpx",
     }: {
       id: string;
@@ -220,8 +220,8 @@ Page({
               // borderWidth: '5rpx',
               // borderColor: 'rgb(255,253,226)',
 
-              width: "690rpx",
-              height: "1040rpx",
+              width: "375px",
+              height: "565px",
             },
           },
           ...paintingArr,
@@ -243,16 +243,7 @@ Page({
           //   },  {left: `${23}rpx`,
           //   fontSize: '40rpx'}, { left: '340rpx'}],
           // },
-          // {
-          //   type: 'rect',
-          //   css: {
-          //     width: '20rpx',
-          //     height: '20rpx',
-          //     color: '#7C4A28',
-          //     left: '200rpx',
-          //     top: 'calc(text_id_2.bottom + 20rpx)',
-          //   },
-          // },
+        
         ],
       },
     });
