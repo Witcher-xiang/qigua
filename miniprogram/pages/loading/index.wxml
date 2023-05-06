@@ -2,6 +2,6 @@
   <image class="picture" src='../../img/loading.png' />
   <view class="title">{{hasServerError ? '推算失败,请重试' : '推算天机中...'}}</view>
   <view wx:if="{{hasServerError}}">
-    <view class="loading-try-again" bindtap="fetchResult"></view>
+    <view class="loading-try-again" bindtap="fetchResult">重试</view>
   </view>
 </view>
