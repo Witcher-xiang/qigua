@@ -20,7 +20,18 @@ Page({
     if (this.data.image && typeof this.data.image === "string") {
       wx.saveImageToPhotosAlbum({
         filePath: this.data.image!,
-      });
+      })
+      .then(()=>{
+        wx.showToast({
+          title: '保存成功',
+        })
+      })
+      .catch(()=>{
+        wx.showToast({
+          icon: 'error',
+          title: '保存失败',
+        })
+      })
     }
     this.hideModal();
   },
@@ -225,24 +236,22 @@ Page({
             },
           },
           ...paintingArr,
-          // longLine,
-          // ...doubleContent,
-          // {
-          //   id: 'text_id_2',
-          //   type: 'text',
-          //   text: '大吉',
-          //   css: [
-          //     {
-          //     top: `400rpx`,
-          //     align: 'center',
-          //     width: '40rpx',
+          {
+            id: 'text_id_2',
+            type: 'text',
+            text: '大吉',
+            css: [
+              {
+              top: `400rpx`,
+              align: 'center',
+              width: '40rpx',
+              color: "#7C4A28",
+              textAlign: 'center',
+              padding: '10rpx',
 
-          //     textAlign: 'center',
-          //     padding: '10rpx',
-
-          //   },  {left: `${23}rpx`,
-          //   fontSize: '40rpx'}, { left: '340rpx'}],
-          // },
+            },  {left: `${23}rpx`,
+            fontSize: '50rpx'}, { left: '340rpx'}],
+          },
         
         ],
       },
