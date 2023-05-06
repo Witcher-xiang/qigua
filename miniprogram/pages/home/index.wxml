@@ -4,5 +4,5 @@
     <view class="desc">请施主心中默念所卜之事，并将心绪用一幅画简单表达</view>
     <image class="pic" src="../../img/start_man.png" />
   </view>
-  <image class="btn" bindtap="handleClick"  src="../../img/statrt_draw_btn.png" />
+  <view class="start-btn" bindtap="handleClick"> 开始描绘</view>
 </view>
