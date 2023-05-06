@@ -1,7 +1,7 @@
 Page({
   px: "1",
   timing: "2",
-  data:{
+  data: {
     hasServerError: false,
   },
 
@@ -51,13 +51,16 @@ Page({
           )}`,
         });
       })
-      .catch((err)=>{
-        this.data.hasServerError = true;
+      .catch((err) => {
+        this.setData({
+          hasServerError: true,
+        });
+
         wx.showModal({
-          title: '提示',
-          content: '服务出了些小问题，请点击重试',
-        })
-      })
-      
+          title: "提示",
+          content: "服务出了些小问题，请点击重试",
+          success: () => this.fetchResult(),
+        });
+      });
   },
 });

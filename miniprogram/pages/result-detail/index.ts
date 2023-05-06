@@ -9,20 +9,15 @@ Page({
     formBottomIndex: [""],
     property: "",
     image: null,
-    painting: {
-
-    }
+    painting: {},
   },
   onImgOK(e: any) {
-
     this.setData({
       image: e.detail.path,
     });
-
   },
   saveImage() {
-    if (this.data.image && typeof this.data.image === 'string') {
-
+    if (this.data.image && typeof this.data.image === "string") {
       wx.saveImageToPhotosAlbum({
         filePath: this.data.image!,
       });
@@ -30,305 +25,203 @@ Page({
     this.hideModal();
   },
   onReady: function () {
-    // cloud://clouddev-1g0cvf6m39a42001.636c-clouddev-1g0cvf6m39a42001-1316562773/poster/img_cover (1).png	
     const commonCss = {
-      color: '#7C4A28', height: '3px',
-    }
-    const longLine = {
-      type: 'rect',
-      css: {
-        ...commonCss,
-        width: '28px',
-        left: '344rpx',
-        align: 'center',
-        top: '140px',
-      },
-    }
-    const shortLineRight = {
-      type: 'rect',
-      css: {
-        ...commonCss,
-        width: '13px',
-        left: '345rpx',
-        top: '145px',
-      }
+      color: "#7C4A28",
+      height: "3px",
+    };
 
-    }
-    const shortLineLeft = {
-      type: 'rect',
+    const getShortLine = ({
+      id = "line_01",
+      direction = "left",
+      top = "265rpx",
+    }: {
+      id: string;
+      direction?: "left" | "right";
+      top: string;
+    }) => ({
+      id,
+      type: "rect",
       css: {
         ...commonCss,
-        width: '13px',
-        left: '315rpx',
-        top: '145px',
-      }
-    }
+        width: "13px",
+
+        left: direction === "left" ? "315rpx" : "345rpx",
+        top,
+      },
+    });
+
+    const getLongLine = ({
+      id = "line_01",
+      left = "343rpx",
+      top = "265rpx",
+    }: {
+      id: string;
+      left?: string;
+      top: string;
+    }) => ({
+      id,
+      type: "rect",
+      css: {
+        ...commonCss,
+        width: "28px",
+        align: "center",
+        left,
+        top,
+      },
+    });
 
     const renderList = [
+      // line_01
       {
-
         short: [
-          {
+          getShortLine({
             id: "line_01",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: '315rpx',
-              top: '265rpx',
-            }
-          },
-          {
+
+            top: "265rpx",
+          }),
+          getShortLine({
             id: "line_01",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: '345rpx',
-              top: '265rpx',
-            }
-
-          }
+            direction: "right",
+            top: "265rpx",
+          }),
         ],
         long: [
-          {
+          getLongLine({
             id: "line_01",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '28px',
-              left: '344rpx',
-              align: 'center',
-              top: '265rpx',
-            },
-          }
-        ]
+            top: "265rpx",
+          }),
+        ],
       },
+      // line_02
       {
         short: [
-          {
+          getShortLine({
             id: "line_02",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left)',
-              top: 'calc(line_01.top+10rpx)',
-            }
-          },
-          {
+            top: "calc(line_01.top+10rpx)",
+          }),
+          getShortLine({
+            direction: "right",
             id: "line_02",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left + 25rpx)',
-              top: 'calc(line_01.top+10rpx)',
-            }
-
-          }
+            top: "calc(line_01.top+10rpx)",
+          }),
         ],
         long: [
-          {
+          getLongLine({
             id: "line_02",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '28px',
-              left: '344rpx',
-              align: 'center',
-              top: 'calc(line_01.top+10rpx)',
-            },
-          }
-        ]
+            top: "calc(line_01.top+10rpx)",
+          }),
+        ],
       },
+      // line_03
       {
         short: [
-          {
+          getShortLine({
             id: "line_03",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              // left: '315rpx',
-              left: 'calc(line_02.left)',
-              top: 'calc(line_01.top+20rpx)',
-            }
-          },
-          {
+            top: "calc(line_01.top+20rpx)",
+          }),
+          getShortLine({
             id: "line_03",
-            type: 'rect',
-            css: {
-
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left)',
-              // left: '345rpx',
-              top: 'calc(line_01.top+20rpx)',
-            }
-
-          }
+            direction: "right",
+            top: "calc(line_01.top+20rpx)",
+          }),
         ],
         long: [
-          {
+          getLongLine({
             id: "line_03",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '28px',
-              left: '344rpx',
-              align: 'center',
-              top: 'calc(line_01.top+20rpx)',
-            },
-          }
-        ]
+            top: "calc(line_01.top+20rpx)",
+          }),
+        ],
       },
+      // line_04
       {
         short: [
-          {
+          getShortLine({
             id: "line_04",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left)',
-              top: 'calc(line_01.top+32rpx)',
-            }
-          },
-          {
+            top: "calc(line_01.top+32rpx)",
+          }),
+          getShortLine({
             id: "line_04",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left + 25rpx)',
-              top: 'calc(line_01.top+32rpx)',
-            }
-
-          }
+            direction: "right",
+            top: "calc(line_01.top+32rpx)",
+          }),
         ],
         long: [
-          {
+          getLongLine({
             id: "line_04",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '28px',
-              left: '344rpx',
-              align: 'center',
-              top: 'calc(line_01.top+32rpx)',
-            },
-          }
-        ]
+            top: "calc(line_01.top+32rpx)",
+          }),
+        ],
       },
+      // line_05
       {
         short: [
-          {
+          getShortLine({
             id: "line_05",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left)',
-              top: 'calc(line_01.top+42rpx)',
-            }
-          },
-          {
+            top: "calc(line_01.top+42rpx)",
+          }),
+          getShortLine({
             id: "line_05",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left + 25rpx)',
-              top: 'calc(line_01.top+42rpx)',
-            }
-
-          }
+            direction: "right",
+            top: "calc(line_01.top+42rpx)",
+          }),
         ],
         long: [
-          {
+          getLongLine({
             id: "line_05",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '28px',
-              left: '344rpx',
-              align: 'center',
-              top: 'calc(line_01.top+42rpx)',
-            },
-          }
-        ]
+            top: "calc(line_01.top+42rpx)",
+          }),
+        ],
       },
+      // line_06
       {
         short: [
-          {
+          getShortLine({
             id: "line_06",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left)',
-              top: 'calc(line_01.top+52rpx)',
-            }
-          },
-          {
+            top: "calc(line_01.top+52rpx)",
+          }),
+          getShortLine({
             id: "line_06",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '13px',
-              left: 'calc(line_01.left + 25rpx)',
-              top: 'calc(line_01.top+52rpx)',
-            }
-
-          }
+            direction: "right",
+            top: "calc(line_01.top+52rpx)",
+          }),
         ],
         long: [
-          {
+          getLongLine({
             id: "line_06",
-            type: 'rect',
-            css: {
-              ...commonCss,
-              width: '28px',
-              left: '344rpx',
-              align: 'center',
-              top: 'calc(line_01.top+52rpx)',
-            },
-          }
-        ]
+            top: "calc(line_01.top+52rpx)",
+          }),
+        ],
       },
     ];
 
-    const formIndex = [...this.data.formTopIndex, ...this.data.formBottomIndex]
+    const formIndex = [...this.data.formTopIndex, ...this.data.formBottomIndex];
     const filterList = renderList.map((item, index) => {
-      if (formIndex[index] === "1") return item.long
+      if (formIndex[index] === "1") return item.long;
       else return item.short;
-
-    })
+    });
     console.log("filterList", filterList);
     const paintingArr: any = [];
-    filterList.forEach(item => {
+    filterList.forEach((item) => {
       paintingArr.push(...item);
     });
 
-    const doubleContent = [shortLineLeft, shortLineRight]
     this.setData({
       painting: {
-        width: '690rpx',
-        height: '1040rpx',
+        width: "690rpx",
+        height: "1040rpx",
 
         views: [
           {
-            type: 'image',
-            url: '../../img/result/img_poster.png',
+            type: "image",
+            url: "../../img/result/img_poster.png",
             css: {
-              top: '0rpx',
-              borderRadius: '20rpx',
+              top: "0rpx",
+              borderRadius: "20rpx",
               // borderWidth: '5rpx',
               // borderColor: 'rgb(255,253,226)',
 
-              width: '690rpx',
-              height: '1040rpx',
+              width: "690rpx",
+              height: "1040rpx",
             },
           },
           ...paintingArr,
@@ -360,34 +253,37 @@ Page({
           //     top: 'calc(text_id_2.bottom + 20rpx)',
           //   },
           // },
-        ]
-      }
-    })
+        ],
+      },
+    });
   },
   onShareTimeline: function () {
-
     return {
-      title: '游移不定？困惑不决？解疑答惑，赶紧来测一卦！',
-      imageUrl: '../../img/result/img_share.png',
-    }
+      title: "游移不定？困惑不决？解疑答惑，赶紧来测一卦！",
+      imageUrl: "../../img/result/img_share.png",
+    };
   },
   onShareAppMessage: function () {
-
-
     return {
-      title: '游移不定？困惑不决？解疑答惑，赶紧来测一卦！',
-      imageUrl: '../../img/result/img_share.png',
-      path: '/pages/home/index',
-
-    }
+      title: "游移不定？困惑不决？解疑答惑，赶紧来测一卦！",
+      imageUrl: "../../img/result/img_share.png",
+      path: "/pages/home/index",
+    };
   },
   onLoad: function (options) {
     //获取云端数据库的数据
     const { index: formIndex, name, status, desc, property } = options;
-    const formTopIndex = formIndex?.split('').slice(0, 3);
-    const formBottomIndex = formIndex?.split('').slice(3);
-    console.log("详情页页面：：", formIndex)
-    this.setData({ formTopIndex, formBottomIndex, name, desc, status, property })
+    const formTopIndex = formIndex?.split("").slice(0, 3);
+    const formBottomIndex = formIndex?.split("").slice(3);
+    console.log("详情页页面：：", formIndex);
+    this.setData({
+      formTopIndex,
+      formBottomIndex,
+      name,
+      desc,
+      status,
+      property,
+    });
   },
 
   //显示分享Modal
@@ -398,7 +294,6 @@ Page({
   },
   //关闭分享Modal
   hideShareModal: function (e: any) {
-
     this.setData({
       showShareView: false,
     });
