@@ -3,7 +3,7 @@ Page({
 
   },
   handleClick() {
-    wx.navigateTo({
+    wx.reLaunch({
       url: '../drawing-board/index',
     })
   }

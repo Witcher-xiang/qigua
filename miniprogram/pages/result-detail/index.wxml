@@ -63,10 +63,8 @@
 
   <!-- 分享的遮罩区域 -->
   <view class="result-detail-modal-share {{showShareView ? 'isModalShow':'isModalHide'}}" bindtap="hideShareModal">
-    <view class="poster-img-container"  style="width: 100%; height: 520px;">
-      <image src="{{image}}" style="width:690rpx; height: 1040rpx; "/>
-
-          <!-- <image src='../../img/result/img_poster.png' class="poster-img"/> -->
+    <view class="poster-img-container" >
+      <image src="{{image}}" style="width:690rpx; height: 980rpx; "/>
     </view>
 
 

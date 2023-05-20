@@ -11,7 +11,7 @@ Page({
   eX: 0, //结束时X值
   eY: 0, //结束时Y值
   pic: [], //保存用户的操作
-  timing:0,
+  timing: 0,
   data: {
     selected: ConsoleType.Pencil, //选中控制台的类型
     showView: false,
@@ -25,10 +25,13 @@ Page({
     isPainting: false,
     picIndex: -1, //当前的pic操作下标
     picLength: 0, //当前记录画布数组的长度
-    
+
   },
-  onLoad  () {
-    setInterval(()=>{
+  onShow: function () {
+    wx.hideHomeButton();
+  },
+  onLoad() {
+    setInterval(() => {
       this.timing++;
     })
   },
@@ -51,14 +54,14 @@ Page({
     });
   },
   isClearAllDrawConfirm() {
-   this.isClearAllDraw();
+    this.isClearAllDraw();
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
-  getPxFromCanvas(){
-    const res = this.ctx.getImageData(0,0,this.canvas.width, this.canvas.height);
-    console.log(res,this.canvas.width,this.canvas.height)
+  getPxFromCanvas() {
+    const res = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+    console.log(res, this.canvas.width, this.canvas.height)
     const { data } = res;
-    const targetColor = [124,74,40,255]; // 目标颜色
+    const targetColor = [124, 74, 40, 255]; // 目标颜色
     let count = 0; // 计数器，记录目标颜色的像素数量
     for (let i = 0; i < data.length; i += 4) { // 遍历每个像素点
       const r = data[i];
@@ -72,10 +75,10 @@ Page({
     }
     console.log('目标颜色的像素数量：', count);
     return count;
-    
+
   },
 
-  
+
   /* 获取canvas节点 */
   getCanvsDom() {
     wx.createSelectorQuery()
@@ -144,7 +147,7 @@ Page({
     this.setData({ selected: ConsoleType.rubber });
   },
 
-  handlePen(){
+  handlePen() {
     this.setData({ selected: ConsoleType.Pencil });
   },
 
@@ -171,17 +174,17 @@ Page({
 
   /* 手指触摸画布开始 */
   drawTouStart(event: any) {
-    const pencilColor = this.data.selected === ConsoleType.Pencil ? 'rgba(124, 74, 40,1)' : '#FFFEF7'; 
+    const pencilColor = this.data.selected === ConsoleType.Pencil ? 'rgba(124, 74, 40,1)' : '#FFFEF7';
     const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? 2 : 20;
     this.setData({
       isPainting: true,
     })
     let change = event.changedTouches[0];
-   
+
     this.ctx.beginPath(); //创建一条路径
     // 添加画笔颜色
-    this.ctx.strokeStyle  = pencilColor;
-    this.ctx.lineWidth =pencilLineWidth;
+    this.ctx.strokeStyle = pencilColor;
+    this.ctx.lineWidth = pencilLineWidth;
     this.sX = change.x;
     this.sY = change.y;
     // this.ctx.setStrokeStyle('rgb(0,0,0)')
@@ -202,7 +205,7 @@ Page({
   },
   // 点击提交
   handleSubmit() {
-    console.log("画布已提交",this.ctx.strokeStyle);
+    console.log("画布已提交", this.ctx.strokeStyle);
     // 像素数量
     const px = this.getPxFromCanvas();
     wx.navigateTo({
@@ -210,5 +213,5 @@ Page({
     });
   },
 
-  clear() {},
+  clear() { },
 });

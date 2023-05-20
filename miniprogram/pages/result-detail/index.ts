@@ -21,17 +21,17 @@ Page({
       wx.saveImageToPhotosAlbum({
         filePath: this.data.image!,
       })
-      .then(()=>{
-        wx.showToast({
-          title: '保存成功',
+        .then(() => {
+          wx.showToast({
+            title: '保存成功',
+          })
         })
-      })
-      .catch(()=>{
-        wx.showToast({
-          icon: 'error',
-          title: '保存失败',
+        .catch(() => {
+          wx.showToast({
+            icon: 'error',
+            title: '保存失败',
+          })
         })
-      })
     }
     this.hideModal();
   },
@@ -44,7 +44,7 @@ Page({
     const getShortLine = ({
       id = "line_01",
       direction = "left",
-      top = "265rpx",
+      top = "245rpx",
     }: {
       id: string;
       direction?: "left" | "right";
@@ -56,14 +56,14 @@ Page({
         ...commonCss,
         width: "12px",
 
-        left: direction === "left" ? "315rpx" : "345rpx",
+        left: direction === "left" ? "calc(50%-16px)" : "calc(50%-16px+30rpx)",
         top,
       },
     });
-
+ 
     const getLongLine = ({
       id = "line_01",
-      left = "340rpx",
+      left =  'calc(50%-16px)',
       top = "265rpx",
     }: {
       id: string;
@@ -75,7 +75,6 @@ Page({
       css: {
         ...commonCss,
         width: "28px",
-        align: "center",
         left,
         top,
       },
@@ -87,19 +86,18 @@ Page({
         short: [
           getShortLine({
             id: "line_01",
-
-            top: "265rpx",
+            top: "250rpx",
           }),
           getShortLine({
             id: "line_01",
             direction: "right",
-            top: "265rpx",
+            top: "250rpx",
           }),
         ],
         long: [
           getLongLine({
             id: "line_01",
-            top: "265rpx",
+            top: "250rpx",
           }),
         ],
       },
@@ -219,20 +217,18 @@ Page({
     this.setData({
       painting: {
         width: "690rpx",
-        height: "1040rpx",
+        height: "980rpx",
 
         views: [
           {
             type: "image",
             url: "../../img/result/img_poster.png",
             css: {
-              top: "0rpx",
+             
               borderRadius: "20rpx",
-              // borderWidth: '5rpx',
-              // borderColor: 'rgb(255,253,226)',
-
-              width: "375px",
-              height: "565px",
+              width: "650rpx",
+              height: "980rpx",
+              left:"2%"
             },
           },
           ...paintingArr,
@@ -242,17 +238,16 @@ Page({
             text: '大吉',
             css: [
               {
-              top: `400rpx`,
-              align: 'center',
-              width: '40rpx',
-              color: "#7C4A28",
-              textAlign: 'center',
-              padding: '10rpx',
-
-            },  {left: `${23}rpx`,
-            fontSize: '50rpx'}, { left: '340rpx'}],
+                top: `400rpx`,
+                width: '40rpx',
+                color: "#7C4A28",
+                textAlign: 'center',
+                padding: '10rpx',
+              }, {
+                fontSize: '50rpx'
+              }, { left: 'calc(50%-30rpx)' }],
           },
-        
+
         ],
       },
     });
