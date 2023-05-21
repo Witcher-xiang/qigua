@@ -12,6 +12,9 @@ Page({
   eY: 0, //结束时Y值
   pic: [], //保存用户的操作
   timing: 0,
+  curveArr: [] as any,
+  beginPotin: {} as any,
+  points: [] as any,
   data: {
     selected: ConsoleType.Pencil, //选中控制台的类型
     showView: false,
@@ -166,42 +169,92 @@ Page({
   onReady() {
     this.getCanvsDom();
   },
-  lineDraw(data: any) {
-    this.ctx.lineTo(data.x, data.y);
-    this.ctx.stroke();
+  setMoveTo() {
+    this.ctx.moveTo(this.sX, this.sY); //起点
+    this.ctx.lineCap = "round"; //设置线条的结束端点样式
+    this.ctx.lineJoin = "round"; //设置两条线相交时，所创建的拐角类型
   },
-
 
   /* 手指触摸画布开始 */
   drawTouStart(event: any) {
     const pencilColor = this.data.selected === ConsoleType.Pencil ? 'rgba(124, 74, 40,1)' : '#FFFEF7';
-    const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? 2 : 20;
+    const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? 4 : 20;
     this.setData({
       isPainting: true,
     })
     let change = event.changedTouches[0];
+    // this.ctx.beginPath(); //创建一条路径
 
-    this.ctx.beginPath(); //创建一条路径
+
     // 添加画笔颜色
     this.ctx.strokeStyle = pencilColor;
     this.ctx.lineWidth = pencilLineWidth;
     this.sX = change.x;
     this.sY = change.y;
-    // this.ctx.setStrokeStyle('rgb(0,0,0)')
-    // context.setLineWidth(5)
+    this.points.push({ x: change.x, y: change.y })
+    // this.setMoveTo();
   },
 
   drawTouMove(event: any) {
     let change = event.changedTouches[0];
+    if (!this.curveArr) this.curveArr = [];// 由于可能未定义 做一个判断
+    this.points.push({ x: change.x, y: change.y })
 
-    this.lineDraw(change);
+    if (this.points.length > 3) {
+      const lastTwoPoints = this.points.slice(-2);
+      const controlPoint = lastTwoPoints[0];
+      const endPoint = {
+        x: (lastTwoPoints[0].x + lastTwoPoints[1].x) / 2,
+        y: (lastTwoPoints[0].y + lastTwoPoints[1].y) / 2,
+      }
+      this.drawLine({ x: this.sX, y: this.sY }, controlPoint, endPoint);
+      this.sX = endPoint.x;
+      this.sY = endPoint.y;
+      // beginPoint = endPoint;
+    }
+
+  },
+  drawLine(beginPoint: any, controlPoint: any, endPoint: any) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(beginPoint.x, beginPoint.y);
+    this.ctx.quadraticCurveTo(controlPoint.x, controlPoint.y, endPoint.x, endPoint.y);
+    this.ctx.stroke();
+    this.ctx.closePath();
   },
   /* 手指触摸画布结束 */
   drawTouEnd(e: any) {
-    let data = e.changedTouches[0];
-    this.lineDraw(data);
-    this.ctx.closePath(); //当鼠标移抬起时,创建从当前点回到起始点的路径
-    this.copyCanvas(); //每次结束都复制本次画布结果
+    let change = e.changedTouches[0];
+    const { x, y } = change;
+    this.points.push({ x, y });
+    if (this.points.length > 3) {
+      const lastTwoPoints = this.points.slice(-2);
+      const controlPoint = lastTwoPoints[0];
+      const endPoint = lastTwoPoints[1];
+      this.drawLine({ x: this.sX, y: this.sY }, controlPoint, endPoint);
+      this.points = [];
+      this.sX = 0;
+      this.sY = 0;
+    }
+
+  },
+  /* 贝塞尔曲线   */
+  lineTo2(data: any) {
+    let arr = this.curveArr as any;// 重新声明一个变量存储 
+    let conNum = arr.length % 2 ? (arr.length + 1) / 2 : arr.length / 2;
+    conNum = conNum - 1;
+    /* 获取中间那个的数组 */
+    this.ctx.lineCap = "round"; //设置线条的结束端点样式
+    this.ctx.moveTo(this.sX, this.sY); //起点
+    /* 假设 x1，y1 = 起始点； x4，y4 = 用户绘制中间点 ；
+       x3，y3 = 结束点； x2，y2 = 贝塞尔实际操作点
+       x4 = 2 * x2 - (x1 + x3) / 2
+       y4 = 2 * y2 - (y1 + y3) / 2
+    */
+    let x2 = 2 * arr[conNum].x - (this.sX + data.x) / 2;
+    let y2 = 2 * arr[conNum].y - (this.sY + data.y) / 2;
+    this.ctx.quadraticCurveTo(x2, y2, data.x, data.y);
+    this.ctx.stroke();
+    this.curveArr = []; //每次结束都清空之前存坐标
   },
   // 点击提交
   handleSubmit() {

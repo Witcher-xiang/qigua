@@ -26,12 +26,12 @@
   <cover-view class="modal-content">
     <cover-view class="modal-content-title">确定要清空当前画布吗？</cover-view>
     <cover-view class="modal-content-button">
-      <cover-view class="cancel" bindtap="hideModal" style="background-image: url('../../img/modal/cancel.png');">
+      <cover-image class="cancel" bindtap="hideModal" src='../../img/modal/cover_img_cancel.png'>
         取消
-      </cover-view>
-      <cover-view class="yes" bindtap="isClearAllDrawConfirm" style="background-image: url('../../img/modal/yes.png');">
+      </cover-image>
+      <cover-image class="yes" bindtap="isClearAllDrawConfirm"src='../../img/modal/cover_img_yes.png'>
         确定
-      </cover-view>
+      </cover-image>
     </cover-view>
   </cover-view>
 </cover-view>

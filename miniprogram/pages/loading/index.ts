@@ -40,13 +40,14 @@ Page({
         const {
           desc,
           name,
+          detail,
           property_name: property,
           value: index,
         } = data["开始"]["主卦"];
         let formIndex = index.toString(2);
         this.data.hasServerError = false;
         wx.navigateTo({
-          url: `../result/index?name=${name}&desc=${desc}&status=${status}&property=${property}&index=${this.fillSixBit(
+          url: `../result/index?name=${name}&desc=${desc}&detail=${detail}&status=${status}&property=${property}&index=${this.fillSixBit(
             formIndex
           )}`,
         });

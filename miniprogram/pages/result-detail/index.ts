@@ -3,6 +3,7 @@ Page({
     desc: "",
     name: "",
     status: "",
+    detail: "",
     showView: false,
     showShareView: false,
     formTopIndex: [""],
@@ -267,7 +268,7 @@ Page({
   },
   onLoad: function (options) {
     //获取云端数据库的数据
-    const { index: formIndex, name, status, desc, property } = options;
+    const { index: formIndex, name, status, desc, property,detail } = options;
     const formTopIndex = formIndex?.split("").slice(0, 3);
     const formBottomIndex = formIndex?.split("").slice(3);
     console.log("详情页页面：：", formIndex);
@@ -276,6 +277,7 @@ Page({
       formBottomIndex,
       name,
       desc,
+      detail,
       status,
       property,
     });

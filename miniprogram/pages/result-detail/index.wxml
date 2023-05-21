@@ -38,9 +38,9 @@
     <painter palette="{{painting}}" bind:imgOK="onImgOK" />
    
     <view class="result-detail-title">主卦：{{property}}</view>
-    <view class='result-detail-box-card-content-text'>
-      {{desc}}
-    </view>
+    <text decode="{{true}}" class='result-detail-box-card-content-text'>
+     {{detail}}
+    </text>
   </view>
   <view class="result-detail-btn-container">
     <view class="result-detail-back-btn" bindtap="handleSubmitGoback">返回</view>
