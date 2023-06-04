@@ -34,10 +34,10 @@
 
           </view>
         </view>
-        <view class="title">{{status}}</view>
+        <view class="title">{{property}}</view>
       </view>
     </view>
-    <view class="head-line">{{property}}</view>
+    <view class="head-line">卦辞</view>
     <view class="result-detail">{{desc}}</view>
   </view>
   <view class="btn" bindtap="handleSubmit">详解</view>

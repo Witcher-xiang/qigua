@@ -4,6 +4,7 @@ Page({
     name: "",
     status: "",
     detail: "",
+    hasShared: false, // 是否分享过
     showView: false,
     showShareView: false,
     formTopIndex: [""],
@@ -254,16 +255,20 @@ Page({
     });
   },
   onShareTimeline: function () {
+    this.data.hasShared = true;
     return {
       title: "游移不定？困惑不决？解疑答惑，赶紧来测一卦！",
       imageUrl: "../../img/result/img_share.png",
+  
     };
   },
   onShareAppMessage: function () {
+    this.data.hasShared = true;
     return {
       title: "游移不定？困惑不决？解疑答惑，赶紧来测一卦！",
       imageUrl: "../../img/result/img_share.png",
       path: "/pages/home/index",
+    
     };
   },
   onLoad: function (options) {
@@ -285,6 +290,7 @@ Page({
 
   //显示分享Modal
   showShareModal: function () {
+    this.data.hasShared = true;
     this.setData({
       showShareView: true,
     });
@@ -320,6 +326,13 @@ Page({
     this.showShareModal();
   },
   handleSubmit() {
+    console.log("this.data.hasShared:",this.data.hasShared)
+    if(this.data.hasShared){
+   wx.redirectTo({
+        url: `../home/index`,
+      });
+      return
+    }
     this.setData({
       showView: !this.data.showView,
     });

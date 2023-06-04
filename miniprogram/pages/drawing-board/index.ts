@@ -178,7 +178,7 @@ Page({
   /* 手指触摸画布开始 */
   drawTouStart(event: any) {
     const pencilColor = this.data.selected === ConsoleType.Pencil ? 'rgba(124, 74, 40,1)' : '#FFFEF7';
-    const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? 4 : 20;
+    const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? 6 : 20;
     this.setData({
       isPainting: true,
     })

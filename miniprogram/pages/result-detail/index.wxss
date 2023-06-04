@@ -261,6 +261,9 @@ height: 50px;
   background: gray;
 
 }
+.result-detail-modal-advertise-ocp{
+  height: 20px;
+}
 
 .result-detail-cancel {
   background-image: url('https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/draw-borad/btn_second_normal_min%403x.png?sign=c2cf0999af48454abc5fae0b1bb65dce&t=1679828859');
