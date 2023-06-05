@@ -238,12 +238,13 @@ Page({
       const controlPoint = lastTwoPoints[0];
       const endPoint = lastTwoPoints[1];
       this.drawLine({ x: this.sX, y: this.sY }, controlPoint, endPoint);
-
+      this.copyCanvas();
       // 重置
       this.points = [];
       this.data.isPainting = false;
       this.sX = 0;
       this.sY = 0;
+      
     }
 
   },
