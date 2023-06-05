@@ -18,7 +18,8 @@
     },
     "condition": false,
     "es6": true,
-    "enhance": true
+    "enhance": true,
+    "skylineRenderEnable": false
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

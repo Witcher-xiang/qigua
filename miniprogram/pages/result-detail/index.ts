@@ -210,7 +210,6 @@ Page({
       if (formIndex[index] === "1") return item.long;
       else return item.short;
     });
-    console.log("filterList", filterList);
     const paintingArr: any = [];
     filterList.forEach((item) => {
       paintingArr.push(...item);
@@ -256,6 +255,11 @@ Page({
   },
   onShareTimeline: function () {
     this.data.hasShared = true;
+    // 分享时隐藏所有弹窗
+    this.setData({
+      showShareView: false,
+      showView: false
+    })
     return {
       title: "游移不定？困惑不决？解疑答惑，赶紧来测一卦！",
       imageUrl: "../../img/result/img_share.png",
@@ -264,6 +268,11 @@ Page({
   },
   onShareAppMessage: function () {
     this.data.hasShared = true;
+    // 分享时隐藏所有弹窗
+    this.setData({
+      showShareView: false,
+      showView:false,
+    })
     return {
       title: "游移不定？困惑不决？解疑答惑，赶紧来测一卦！",
       imageUrl: "../../img/result/img_share.png",
@@ -290,7 +299,6 @@ Page({
 
   //显示分享Modal
   showShareModal: function () {
-    this.data.hasShared = true;
     this.setData({
       showShareView: true,
     });
