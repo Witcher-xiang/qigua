@@ -11,7 +11,7 @@ Page({
   eX: 0, //结束时X值
   eY: 0, //结束时Y值
   pic: [], //保存用户的操作
-  timing: 0,
+  timing: 0, // 记录进入页面的时间
   curveArr: [] as any,
   beginPotin: {} as any,
   points: [] as any,
@@ -169,35 +169,41 @@ Page({
   onReady() {
     this.getCanvsDom();
   },
-  setMoveTo() {
-    this.ctx.moveTo(this.sX, this.sY); //起点
-    this.ctx.lineCap = "round"; //设置线条的结束端点样式
-    this.ctx.lineJoin = "round"; //设置两条线相交时，所创建的拐角类型
-  },
 
+  getPos(event:any){
+    return {
+      x: event.touches[0].clientX,
+      y: event.touches[0].clientY,
+    }
+  },
   /* 手指触摸画布开始 */
   drawTouStart(event: any) {
+    this.setData({ isPainting: true });
+    this.data.isPainting = true
+    const lineWidth = 6;
+    const rubberWidth = 20;
     const pencilColor = this.data.selected === ConsoleType.Pencil ? 'rgba(124, 74, 40,1)' : '#FFFEF7';
-    const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? 6 : 20;
-    this.setData({
-      isPainting: true,
-    })
+    const pencilLineWidth = this.data.selected === ConsoleType.Pencil ? lineWidth : rubberWidth;
     let change = event.changedTouches[0];
-    // this.ctx.beginPath(); //创建一条路径
-
+    
+    this.ctx.lineCap = "round"; //设置线条的结束端点样式
+    this.ctx.lineJoin = "round"; //设置两条线相交时，所创建的拐角类型
 
     // 添加画笔颜色
     this.ctx.strokeStyle = pencilColor;
     this.ctx.lineWidth = pencilLineWidth;
     this.sX = change.x;
     this.sY = change.y;
-    this.points.push({ x: change.x, y: change.y })
-    // this.setMoveTo();
+    this.points.push(this.getPos(event))
+    
   },
 
   drawTouMove(event: any) {
+    if(!this.data.isPainting)  return;
     let change = event.changedTouches[0];
     if (!this.curveArr) this.curveArr = [];// 由于可能未定义 做一个判断
+
+
     this.points.push({ x: change.x, y: change.y })
 
     if (this.points.length > 3) {
@@ -223,6 +229,7 @@ Page({
   },
   /* 手指触摸画布结束 */
   drawTouEnd(e: any) {
+    if(!this.data.isPainting)  return;
     let change = e.changedTouches[0];
     const { x, y } = change;
     this.points.push({ x, y });
@@ -231,31 +238,16 @@ Page({
       const controlPoint = lastTwoPoints[0];
       const endPoint = lastTwoPoints[1];
       this.drawLine({ x: this.sX, y: this.sY }, controlPoint, endPoint);
+
+      // 重置
       this.points = [];
+      this.data.isPainting = false;
       this.sX = 0;
       this.sY = 0;
     }
 
   },
-  /* 贝塞尔曲线   */
-  lineTo2(data: any) {
-    let arr = this.curveArr as any;// 重新声明一个变量存储 
-    let conNum = arr.length % 2 ? (arr.length + 1) / 2 : arr.length / 2;
-    conNum = conNum - 1;
-    /* 获取中间那个的数组 */
-    this.ctx.lineCap = "round"; //设置线条的结束端点样式
-    this.ctx.moveTo(this.sX, this.sY); //起点
-    /* 假设 x1，y1 = 起始点； x4，y4 = 用户绘制中间点 ；
-       x3，y3 = 结束点； x2，y2 = 贝塞尔实际操作点
-       x4 = 2 * x2 - (x1 + x3) / 2
-       y4 = 2 * y2 - (y1 + y3) / 2
-    */
-    let x2 = 2 * arr[conNum].x - (this.sX + data.x) / 2;
-    let y2 = 2 * arr[conNum].y - (this.sY + data.y) / 2;
-    this.ctx.quadraticCurveTo(x2, y2, data.x, data.y);
-    this.ctx.stroke();
-    this.curveArr = []; //每次结束都清空之前存坐标
-  },
+
   // 点击提交
   handleSubmit() {
     console.log("画布已提交", this.ctx.strokeStyle);
@@ -268,3 +260,4 @@ Page({
 
   clear() { },
 });
+
