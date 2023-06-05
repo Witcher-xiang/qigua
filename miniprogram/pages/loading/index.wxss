@@ -1,0 +1,22 @@
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.picture{
+  width: 220px;
+  height: 220px;
+}
+.title{
+  color: #CD9772;
+}
+
+.loading-try-again {
+  margin-top: 90%;
+  text-align: center;
+  line-height: 47px;
+  width: 153px;
+  height: 47px;
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG34.png");
+  color: #7c4a28;
+}

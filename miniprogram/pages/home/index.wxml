@@ -1,0 +1,8 @@
+<view class="home">
+  <view class="content">
+    <view class="title">卜以决疑 来一卦！</view>
+    <view class="desc">请施主心中默念所卜之事，并将心绪用一幅画简单表达</view>
+    <image class="pic" src="../../img/start_man.png" />
+  </view>
+  <view class="start-btn" bindtap="handleClick"> 开始描绘</view>
+</view>

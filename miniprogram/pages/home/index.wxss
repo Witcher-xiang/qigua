@@ -1,0 +1,45 @@
+.home{
+  height: 100vh; /* 设置容器高度为整个视窗高度 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 39px;
+  box-sizing: border-box;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  font-size: 28px;
+  color: #7C4A28;
+  font-family: Kaiti SC;
+}
+.desc{
+  margin-top: 32rpx;
+  color: #7C4A28;
+  font-size: 16px;
+  text-align: center;
+}
+
+.pic{
+  margin-top: 80rpx;
+  width: 251px;
+height: 210px;
+}
+
+.start-btn {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUEAAAAsCAYAAAD7EwoBAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAAL+SURBVHic7dtPa1RXAIbx95w7yThOYghcJyiloRWC3bgoFopS6CoDdtN+hUBTaBcFiX6IEgouGoiBfoZuFJJVoDQIiovZaAsxNJSJk7lN7MydP3cmuacLFSSbLqxz0PP8VgPnLt7Vw9xhjtEJt2rXr8WlyoKMqsVCacJae/IRAHhr5Hmu7KiXymk96e3//P2lH+++em5eflh+sBhXpmbXJopnvhz9TAAYjTRr/bL/z59fL12+nUgvIrj8YDE+P33ht1Njp+cOO4meNB5rv7WnbpYqd7nfxQDwGqyxOl2cUOXMOX04c1HT5Vj9YfeP+uH21aXLt5OCJFWmZtcKdmzu4c6WthuPfG8GgP9N7nKl/ZbSfktP9n/XhZmPdOn9T+YqU7Nrkr4yt2rXr52bfO/Or4/XlbQbvvcCwBsXT87os4tV7bX/+sLGpcpCbfc+AQQQjKTdUG33vuJSZcEedJtVXoEBhGa78UgH3WbV1g93y77HAIAP9cPdsk1aDfPfjwLAuydpNYztZqnvHQDgRTdLZfkfIIBQ5S4Xd+IABI0IAggaEQQQNCIIIGhEEEDQiCCAoBFBAEEjggCCRgQBBI0IAggaEQQQNCIIIGhEEEDQiCCAoBFBAEEjggCCRgQBBI0IAggaEQQQNCIIIGhEEEDQrKSh7xEA4MnQOqem7xUA4INzatpBr1D0PQQAfBj0CkXbb0cD30MAwId+OxrYYRbFWSeq+x4DAKOUdaL6MItia6Wd9GB8+nhoE9+jAGAUjoc2SQ/Gp620Y520KWdKz54Wy3wjBPCuyzpR/dnTYlnOlJy0WTB5vuqsXZQzpfTvYqmfHu+dmjweHy8dZcborKQx36MB4DUMnVNz0CsU++1ocJRF518emDxfNZI0v3zlJ0nfepsIAKO3srG09d3zGyMuvSlpy+8eABiZrRfde35tbuNGrSOXzkta8ToLAN68Fbl0fuNGrSNJ5uRp9YdPP3bWfmOkz3PpA8NvggDeYk4aWmnHSZsmz1fXb957+Or5v/pK/FVyYdSkAAAAAElFTkSuQmCC');
+  width: 640rpx;
+  height: 80rpx;
+  background-size: 640rpx 80rpx;
+  line-height: 44px;
+  border-radius: 4rpx;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+}

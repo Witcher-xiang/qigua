@@ -1,0 +1,111 @@
+.result-wrapper {
+  height: 100vh; /* 设置容器高度为整个视窗高度 */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 359px;
+  height: 515px;
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG7.png");
+}
+
+.result-pic {
+  margin-top: 38px;
+  width: 204px;
+  height: 258px;
+  background-image: url("https://static.fuxi.netease.com/yaotai/portal/index/lfb2krct_636796.png");
+
+}
+
+.result-pic-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.divination {
+  width: 100px;
+  text-align: center;
+  margin-top:60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.divination-top {
+  /* background-image: url("https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/result-page/%E7%BB%84%204.png?sign=d9e7cca472a2a839129cdf8990d91bc4&t=1679830327"); */
+  width: 56px;
+  height: 28px;
+  margin-bottom: 10px;
+}
+.long-line{
+  width: 56px;
+  height: 6px;
+  background: #7C4A28;
+  margin-bottom: 5px;
+}
+.short-line{
+  width: 25px;
+height: 6px;
+background: #7C4A28;
+}
+.short-line-container{
+  width: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.divination-bottom {
+  /* background-image: url("https://636c-clouddev-1g0cvf6m39a42001-1316562773.tcb.qcloud.la/result-page/%E7%BB%84%204.png?sign=d9e7cca472a2a839129cdf8990d91bc4&t=1679830327"); */
+  width: 56px;
+  height: 28px;
+}
+.title {
+  margin-top: 60px;
+  font-family: Kaiti SC;
+  font-size: 28px;
+  text-align: center;
+
+  /* 主色/棕 */
+  color: #7c4a28;
+}
+
+.head-line {
+  margin-top: 38px;
+  width: 280px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG9.png");
+}
+
+.result-detail {
+  margin-top: 18px;
+  width: 265px;
+  text-align: center;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100rpx;
+  width: 100%;
+}
+
+.btn {
+  background-image: url("https://fortune-1258445350.cos.ap-nanjing.myqcloud.com/WechatIMG8.png");
+  height: 44px;
+  width: 321px;
+  line-height: 44px;
+  border-radius: 4rpx;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+}
